@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <!--#region Pages -->
+    <Style TargetType="Page"
+           ApplyToDerivedTypes="True">
+        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryDark}"/>
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region Buttons -->
+    <Style TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource Tertiary}"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="VerticalOptions" Value="Start"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="TextColor" Value="{StaticResource PrimaryDarkText}"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontFamily" Value="Lato"/>
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region Label -->
+    <Style TargetType="Label" x:Key="Title">
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="VerticalOptions" Value="Start"/>
+        <Setter Property="FontFamily" Value="Nexa"/>
+        <Setter Property="FontSize" Value="60"/>
+    </Style>
+    <!--#endregion-->
+    
+</ResourceDictionary>
