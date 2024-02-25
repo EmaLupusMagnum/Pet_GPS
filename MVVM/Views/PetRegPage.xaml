@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PetGPS.MVVM.Views.PetRegPage">
+    <Grid RowDefinitions=".12*,.12*,.12*,.12*,.12*,.1*,.17*,.12*"
+          Padding="5">
+        <Image Source="usericon.svg" />
+        
+        <Frame Grid.Row="1">
+            <Entry Placeholder="Nombre"
+                   Keyboard="Text"
+                   MaxLength="20" />
+        </Frame>
+        
+        <Frame Grid.Row="2">
+            <Entry Placeholder="Raza"
+                   Keyboard="Text"/>
+        </Frame>
+        
+        <Frame Grid.Row="3">
+            <Entry Placeholder="Colores"
+                   Keyboard="Email" />
+        </Frame>
+        
+        <Frame Grid.Row="4">
+            <Picker Title="Sexo" />
+        </Frame>
+        <Label Grid.Row="5" 
+               Text="DESCRIPCIÓN"
+               Style="{StaticResource Title}"
+               FontSize="Large"
+               VerticalOptions="Center"/>
+        
+        <Frame Grid.Row="6"
+               VerticalOptions="Fill">
+            <Editor Keyboard="Chat"
+                    MaxLength="150
+                    "/>
+        </Frame>
+        
+        <Button Grid.Row="7"
+                Text="Registrar Mascota"
+                VerticalOptions="Center" />
+    </Grid>
+</ContentPage>

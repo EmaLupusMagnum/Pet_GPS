@@ -4,23 +4,115 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:PetGPS.MVVM.Views"
+    xmlns:utilities="clr-namespace:PetGPS.Utilities"
     Title="PetGPS"
     FlyoutBehavior="Flyout"
-    BackgroundColor="#005b31">
+    BackgroundColor="Beige"
+    Shell.BackgroundColor="#005b31"
+    Shell.TitleColor="#ECE7FF"
+    Shell.UnselectedColor="#545454"
+    FlyoutBackgroundColor="#00a759">
     
     
     <Shell.TitleView>
-        <Grid>
-            <Label Text="PETGPS"/>
+        <Grid ColumnDefinitions=".8*,.2*">
+            <Label Text="PETGPS"
+                   Style="{StaticResource Title}"
+                   FontSize="Large"
+                   VerticalOptions="Center"
+                   TextColor="White"/>
+            
+            <Image Grid.Column="1" 
+                   Source="icono.png"/>
         </Grid>
     </Shell.TitleView>
     
-    <FlyoutItem Title="Loggin">
-        <ShellContent ContentTemplate="{DataTemplate local:LoginPage}"
-                      Route="LoginPage" />
-    </FlyoutItem>
-    <FlyoutItem Title="Main">
+    <Shell.FlyoutBackdrop>
+        <LinearGradientBrush StartPoint="0,0"
+                             EndPoint="1,1">
+            <GradientStop Offset="0.1"
+                          Color="{StaticResource PrimaryDark}" />
+            <GradientStop Offset="0.5"
+                          Color="{StaticResource Secondary}" />
+            <GradientStop Offset="0.8"
+                          Color="{StaticResource Tertiary}" />
+        </LinearGradientBrush>
+    </Shell.FlyoutBackdrop>
+    
+    <Shell.FlyoutHeader>
+        <Grid BackgroundColor="Black"
+              HeightRequest="150">
+            <Image Aspect="AspectFill"
+                   Opacity=".5"
+                   Source="perro.jpg" />
+            <Label FontFamily="Lato"
+                   FontSize="Large"
+                   HorizontalOptions="Center"
+                   Text="PetGPS"
+                   TextColor="White"
+                   VerticalOptions="Center" />
+        </Grid>
+    </Shell.FlyoutHeader>
+    
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid ColumnDefinitions=".2*, .8*"
+                  HeightRequest="75"
+                  RowSpacing="0">
+                <Image HeightRequest="30"
+                       Source="{Binding FlyoutIcon}"
+                       VerticalOptions="Center" />
+                <Label Grid.Column="1"
+                       Margin="20,0,0,0"
+                       FontSize="17"
+                       Text="{Binding Title}"
+                       TextColor="Black"
+                       VerticalOptions="Center" />
+                <Rectangle x:Name="background"
+                           Grid.ColumnSpan="2"
+                           Fill="{StaticResource Primary}"
+                           Opacity=".1" />
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter TargetName="background"
+                                            Property="Rectangle.Fill"
+                                            Value="#00a759" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter TargetName="background"
+                                            Property="Rectangle.Fill"
+                                            Value="Black" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+    
+    <FlyoutItem Title="Mapa">
         <ShellContent ContentTemplate="{DataTemplate local:MainPage}"
                       Route="MainPage" />
+        <FlyoutItem.Icon>
+            <FontImageSource FontFamily="Icons"
+                             Glyph="{x:Static utilities:IconFont.Location_Icon}"
+                             Size="50"/>
+        </FlyoutItem.Icon>
+    </FlyoutItem>
+    
+    <FlyoutItem Title="Proveedores">
+        <ShellContent ContentTemplate="{DataTemplate local:ProvidersPage}"
+                      Route="ProvidersPage" />
+        <FlyoutItem.Icon>
+            <FontImageSource FontFamily="Icons"
+                             Glyph="{x:Static utilities:IconFont.Providers_Icon}"
+                             Size="50" />
+        </FlyoutItem.Icon>
     </FlyoutItem>
 </Shell>

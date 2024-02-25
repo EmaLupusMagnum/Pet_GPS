@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PetGPS.MVVM.Views.ProvidersPage"
+             Title="ProvidersPage">
+    
+    <Grid RowDefinitions=".2*,.8*"
+          Padding="10">
+        
+        <Grid RowDefinitions=".6*,.4*" >
+            <Frame>
+                <SearchBar Placeholder="Search"
+                           PlaceholderColor="{StaticResource PrimaryDarkText}"
+                           FontFamily="Lato"
+                           VerticalOptions="Center"
+                           />
+            </Frame>
+            
+            <Grid Grid.Row="1" 
+                  ColumnDefinitions=".2*,.8*">
+                
+                <Label Text="Filtros:"
+                       Style="{StaticResource Title}"
+                       FontSize="Body"
+                       VerticalOptions="Center"/>
+                
+                <CollectionView Grid.Column="1">
+                    
+                </CollectionView>
+                
+            </Grid>
+        </Grid>
+        
+        <CollectionView Grid.Row="1">
+            
+            <CollectionView.EmptyViewTemplate>
+                <DataTemplate>
+                    <Label Text="No se encontro ningun proveedor"/>
+                </DataTemplate>
+            </CollectionView.EmptyViewTemplate>
+            
+        </CollectionView>
+        
+    </Grid>
+    
+</ContentPage>

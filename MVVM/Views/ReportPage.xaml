@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PetGPS.MVVM.Views.ReportPage"
+             Title="ReportPage">
+    
+    <Grid RowDefinitions=".15*,.1*,.25*,.2*,.2*,.1*"
+          Padding="10">
+        
+        <Frame>
+            <Label Text="AGREGAR REPORTE"
+                   Style="{StaticResource Title}"
+                   TextColor="{StaticResource Secondary}"
+                   FontSize="35"
+                   VerticalOptions="Center" />
+        </Frame>
+        
+        <Label Text="Mascotas"
+               Grid.Row="1"
+               Style="{StaticResource Title}"
+               FontSize="Large"
+               VerticalOptions="Center"/>
+        
+        <Frame Grid.Row="2"
+               VerticalOptions="Fill">
+            
+            <CollectionView ItemsSource="{Binding List}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                       ItemSpacing="5" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Style="{StaticResource CollectionFrames}">
+                            <Grid ColumnDefinitions=".2*,.8*">
+                                <Image Source="perro.jpg"
+                                       VerticalOptions="Fill"
+                                       WidthRequest="100"
+                                       HeightRequest="100"
+                                       Clip="{StaticResource circle}" />
+                                <Label Grid.Column="1"
+                                       VerticalOptions="Center"
+                                       Style="{StaticResource Title}"
+                                       FontSize="Large"
+                                       Text="{Binding Name}" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                
+                <CollectionView.Footer>
+                    <Frame Grid.Row="1"
+                           Style="{StaticResource CollectionFrames}">
+                        <Grid ColumnDefinitions="*,*">
+                            <Label Text="Añadir Mascota"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   FontFamily="Lato"
+                                   FontSize="Medium" />
+                            <Button Grid.Column="1"
+                                    Text="+"
+                                    Style="{StaticResource CircularButton}"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center" />
+                        </Grid>
+                    </Frame>
+                </CollectionView.Footer>
+                
+            </CollectionView>
+            
+        </Frame>
+        
+        <Frame Grid.Row="3">
+            <Entry Placeholder="Ultima Ubicación Conocida"
+                   Keyboard="Text"/>
+        </Frame>
+        
+        <Frame Grid.Row="4"
+               VerticalOptions="Fill">
+            <Editor Keyboard="Chat"
+                    MaxLength="150"/>
+        </Frame>
+        
+        <Button Grid.Row="5"
+                Margin="10"
+                Text="Reportar"/>
+    </Grid>
+    
+</ContentPage>

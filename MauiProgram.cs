@@ -16,6 +16,7 @@ namespace PetGPS
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("Nexa-Heavy.ttf", "Nexa");
                     fonts.AddFont("Lato-Bold.ttf", "Lato");
+                    fonts.AddFont("icons.ttf", "Icons");
                 });
 
 #if DEBUG

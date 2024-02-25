@@ -2,11 +2,21 @@
 <?xaml-comp compile="true" ?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    
+    
+    
     <!--#region Pages -->
     <Style TargetType="Page"
            ApplyToDerivedTypes="True">
         <Setter Property="BackgroundColor" Value="{StaticResource PrimaryDark}"/>
     </Style>
+    <!--#endregion-->
+    
+    <!--#region Clip -->
+    <EllipseGeometry x:Key="circle"
+                     Center="50,50"
+                     RadiusX="25"
+                     RadiusY="25" />
     <!--#endregion-->
     
     <!--#region Buttons -->
@@ -16,10 +26,26 @@
         <Setter Property="VerticalOptions" Value="Start"/>
         <Setter Property="CornerRadius" Value="10"/>
         <Setter Property="TextColor" Value="{StaticResource PrimaryDarkText}"/>
-        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontSize" Value="18"/>
         <Setter Property="FontFamily" Value="Lato"/>
     </Style>
-    <!--#endregion-->
+
+    <Style TargetType="Button" x:Key="CircularButton">
+        <Setter Property="FontAttributes"
+                Value="Bold" />
+        <Setter Property="FontSize"
+                Value="Large" />
+        <Setter Property="HeightRequest"
+                Value="100" />
+        <Setter Property="WidthRequest"
+                Value="100" />
+        <Setter Property="BackgroundColor"
+                Value="{StaticResource Tertiary}" />
+        <Setter Property="Clip"
+                Value="{StaticResource circle}" />
+    </Style>
+     <!--#endregion-->
+    
     
     <!--#region Label -->
     <Style TargetType="Label" x:Key="Title">
@@ -30,4 +56,34 @@
     </Style>
     <!--#endregion-->
     
+    <!--#region Frames -->
+    <Style TargetType="Frame">
+        <Setter Property="CornerRadius" Value="30"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource Tertiary}"/>
+    </Style>
+    
+    <Style TargetType="Frame" x:Key="CollectionFrames">
+        <Setter Property="CornerRadius" Value="50"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource Secondary}" />
+        <Setter Property="HeightRequest" Value="90" />
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region Entry -->
+    <Style TargetType="Entry">
+        <Setter Property="FontFamily" Value="Lato"/>
+        <Setter Property="PlaceholderColor" Value="{StaticResource PrimaryDarkText}"/>
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region Pickers -->
+    <Style TargetType="Picker">
+        <Setter  Property="TitleColor" Value="Black"/>
+        <Setter  Property="FontFamily" Value="Lato"/>
+        <Setter  Property="TextColor" Value="Black"/>
+        <Setter  Property="FontAttributes" Value="Bold"/>
+    </Style>
+    <!--#endregion-->
 </ResourceDictionary>

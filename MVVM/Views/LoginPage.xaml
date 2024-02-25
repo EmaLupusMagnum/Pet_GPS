@@ -14,11 +14,11 @@
         
         <Button Grid.Row="2"
                 Text="REGISTRARSE COMO USUARIO"
-                WidthRequest="400"/>
+                WidthRequest="370"/>
         
         <Button Grid.Row="3"
                 Text="REGISTRARSE COMO PROVEEDOR"
-                WidthRequest="400"/>
+                WidthRequest="370"/>
         
         <Label Grid.Row="4"
                Text="Ya tienes una cuenta? Logueate"

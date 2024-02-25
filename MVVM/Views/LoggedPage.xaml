@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PetGPS.MVVM.Views.LoggedPage"
+             Title="LoggedPage">
+    
+    <Grid RowDefinitions=".2*,.2*,.2*,.1*,.1*,.1*,.1*"
+          Padding="5">
+        
+        <Image Source="usericon.svg"/>
+        
+        <Frame Grid.Row="1"
+               VerticalOptions="CenterAndExpand">
+            <Entry Placeholder="Nombre y Apellido"
+                   Keyboard="Text"
+                   MaxLength="20"/>
+        </Frame>
+        
+        <Frame Grid.Row="2"
+               VerticalOptions="Start">
+            <Entry Placeholder="Contraseña"
+                   Keyboard="Text"
+                   IsPassword="True" />
+        </Frame>
+        
+        <Button Grid.Row="3"
+                Text="LOGUEATE"
+                VerticalOptions="Start"
+                FontSize="Large"/>
+        
+        <Label Grid.Row="4"
+               Text="NO TINES CUENTA? REGISTRATE"
+               FontFamily="Lato"
+               FontSize="Title"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               TextColor="White"
+               FontAttributes="Bold"
+               TextDecorations="Underline"/>
+        
+        <Button Grid.Row="5"
+                Text="REGISTRARSE COMO USUARIO"
+                WidthRequest="370" />
+        
+        <Button Grid.Row="6"
+                Text="REGISTRARSE COMO PROVEEDOR"
+                WidthRequest="370" />
+    </Grid>
+    
+</ContentPage>
