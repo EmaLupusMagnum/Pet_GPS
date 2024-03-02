@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using PetGPS.MVVM.Models;
+using PetGPS.Repositories;
 
 namespace PetGPS
 {
@@ -22,6 +24,7 @@ namespace PetGPS
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+            builder.Services.AddSingleton<BaseRepository<User>>();
 
             return builder.Build();
         }

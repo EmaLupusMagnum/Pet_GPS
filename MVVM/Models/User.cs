@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PetGPS.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PetGPS.MVVM.Models
 {
-    public class User
+    public class User: TableData
     {
         public int Id { get; set; }
         public string Name { get; set; }
