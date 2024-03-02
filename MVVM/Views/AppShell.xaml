@@ -105,7 +105,6 @@
                              Size="50"/>
         </FlyoutItem.Icon>
     </FlyoutItem>
-    
     <FlyoutItem Title="Proveedores">
         <ShellContent ContentTemplate="{DataTemplate local:ProvidersPage}"
                       Route="ProvidersPage" />
