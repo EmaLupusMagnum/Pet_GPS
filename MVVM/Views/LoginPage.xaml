@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PetGPS.MVVM.Views.LoginPage"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False">
     
     <Grid RowDefinitions=".55*,.2*,.1*,.1*,.05*">
         
@@ -10,22 +11,32 @@
         
         <Label Grid.Row="1" 
                Text="PETGPS"
-               Style="{StaticResource Title}"/>
+               Style="{StaticResource Title}"
+               TextColor="White"/>
         
         <Button Grid.Row="2"
                 Text="REGISTRARSE COMO USUARIO"
-                WidthRequest="370"/>
+                WidthRequest="370"
+                x:Name="BtnLogUser"
+                Clicked="BtnLogUser_Clicked"/>
         
         <Button Grid.Row="3"
                 Text="REGISTRARSE COMO PROVEEDOR"
-                WidthRequest="370"/>
+                WidthRequest="370"
+                x:Name="BtnLogProv"
+                Clicked="BtnLogProv_Clicked"/>
         
         <Label Grid.Row="4"
                Text="Ya tienes una cuenta? Logueate"
                TextColor="White"
                HorizontalTextAlignment="Center"
                TextDecorations="Underline"
-               FontFamily="Lato"/>
+               FontFamily="Lato"
+               x:Name="BtnLogIn">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="LogIn_Tapped"/>
+            </Label.GestureRecognizers>
+        </Label>
         
     </Grid>
 

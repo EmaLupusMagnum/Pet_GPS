@@ -5,38 +5,47 @@
     <Grid RowDefinitions=".12*,.12*,.12*,.12*,.12*,.06*,.05*,.28*"
           Padding="5">
         <Image Source="usericon.svg" />
+        
         <Frame Grid.Row="1">
             <Entry Placeholder="Nombre y Apellido"
                    Keyboard="Text"
-                   MaxLength="20" />
+                   MaxLength="20" 
+                   x:Name="EntryName"/>
         </Frame>
         
         <Frame Grid.Row="2">
             <Entry Placeholder="Contraseña"
                    Keyboard="Text"
-                   IsPassword="True" />
+                   IsPassword="True" 
+                   x:Name="EntryPass"/>
         </Frame>
         
         <Frame Grid.Row="3">
             <Entry Placeholder="Correo"
-                   Keyboard="Email" />
+                   Keyboard="Email" 
+                   x:Name="EntryEmail"/>
         </Frame>
         
         <Frame Grid.Row="4">
             <Entry Placeholder="Telefono"
-                   Keyboard="Numeric" />
+                   Keyboard="Numeric"
+                   x:Name="EntryPhone"/>
         </Frame>
         
         <Button Grid.Row="5" 
-                Text="Registrarse"/>
+                Text="Registrarse"
+                x:Name="BtnRegister"
+                Clicked="BtnRegister_Clicked"/>
         
         <Label Grid.Row="6"
                Text="Mascotas"
                Style="{StaticResource Title}"
                FontSize="Large" />
+        
         <Frame Grid.Row="7"
                VerticalOptions="Fill"
                CornerRadius="10">
+            
             <CollectionView ItemsSource="{Binding List}">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical"
@@ -73,7 +82,9 @@
                                     Text="+"
                                     Style="{StaticResource CircularButton}"
                                     VerticalOptions="Center"
-                                    HorizontalOptions="Center" />
+                                    HorizontalOptions="Center" 
+                                    x:Name="BtnAddPet"
+                                    Clicked="BtnAddPet_Clicked"/>
                         </Grid>
                     </Frame>
                 </CollectionView.Footer>

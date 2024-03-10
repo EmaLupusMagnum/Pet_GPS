@@ -53,7 +53,6 @@
                    VerticalOptions="Center" />
         </Grid>
     </Shell.FlyoutHeader>
-    
     <Shell.ItemTemplate>
         <DataTemplate>
             <Grid ColumnDefinitions=".2*, .8*"
@@ -96,7 +95,13 @@
         </DataTemplate>
     </Shell.ItemTemplate>
     
-    <FlyoutItem Title="Mapa">
+    
+        <ShellContent ContentTemplate="{DataTemplate local:LoadingPage}"
+                      Route="LoadingPage" 
+                      Shell.FlyoutItemIsVisible="False"
+                      Shell.FlyoutBehavior="Disabled"/>
+    
+        <FlyoutItem Title="Mapa">
         <ShellContent ContentTemplate="{DataTemplate local:MainPage}"
                       Route="MainPage" />
         <FlyoutItem.Icon>
@@ -105,6 +110,7 @@
                              Size="50"/>
         </FlyoutItem.Icon>
     </FlyoutItem>
+    
     <FlyoutItem Title="Proveedores">
         <ShellContent ContentTemplate="{DataTemplate local:ProvidersPage}"
                       Route="ProvidersPage" />
@@ -114,4 +120,7 @@
                              Size="50" />
         </FlyoutItem.Icon>
     </FlyoutItem>
+    
+    
+    
 </Shell>

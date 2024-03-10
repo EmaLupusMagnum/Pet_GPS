@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using PetGPS.MVVM.Models;
+using PetGPS.MVVM.Views;
 using PetGPS.Repositories;
 
 namespace PetGPS
@@ -25,6 +26,9 @@ namespace PetGPS
     		builder.Logging.AddDebug();
 #endif
             builder.Services.AddSingleton<BaseRepository<User>>();
+
+            builder.Services.AddTransient<AuthService>();
+            builder.Services.AddTransient<LoadingPage>();
 
             return builder.Build();
         }
