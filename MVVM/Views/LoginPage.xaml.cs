@@ -8,7 +8,8 @@ public partial class LoginPage : ContentPage
 
     private async void LogIn_Tapped(object sender, TappedEventArgs e)
     {
-        await Shell.Current.GoToAsync("LoggedPage");
+        //await Shell.Current.GoToAsync("LoggedPage");
+        await DisplayAlert("Lo siento", "Actualmente esta funcion no esta disponible, intentalo nuevamente en unas semanas", "Ok");
     }
 
     private async void BtnLogProv_Clicked(object sender, EventArgs e)

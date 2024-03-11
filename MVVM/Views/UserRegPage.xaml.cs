@@ -1,21 +1,22 @@
-
 using PetGPS.MVVM.ViewModels;
-using System.Reflection.Metadata.Ecma335;
 namespace PetGPS.MVVM.Views;
 
 public partial class UserRegPage : ContentPage
 {
     UserRegViewModel vm = new UserRegViewModel();
-	public UserRegPage()
+
+    public UserRegPage()
 	{
 		InitializeComponent();
 		BindingContext = vm;
-	}
-
-    private void BtnAddPet_Clicked(object sender, EventArgs e)
-    {
-
     }
+
+
+    private async void BtnAddPet_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("PetRegPage");
+    }
+
 
     private async void BtnRegister_Clicked(object sender, EventArgs e)
     {
@@ -31,11 +32,14 @@ public partial class UserRegPage : ContentPage
 
         if (yes)
         {
-            bool savedata = await DisplayAlert("Guardar Inicio Sesion","Quieres guardar tu sesion en este dispositivo","Si","No");
-
-            if (savedata)
-                vm.SaveData();
+            vm.SaveData();
             await Shell.Current.GoToAsync("//MainPage");    
         }
+    }
+
+    private void RefreshList_Tapped(object sender, TappedEventArgs e)
+    {
+        vm.Pets = new System.Collections.ObjectModel.ObservableCollection<Models.Pet>(App.PetRepo.GetItems());
+
     }
 }

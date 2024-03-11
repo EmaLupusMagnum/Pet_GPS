@@ -75,6 +75,7 @@
     <Style TargetType="Entry">
         <Setter Property="FontFamily" Value="Lato"/>
         <Setter Property="PlaceholderColor" Value="{StaticResource PrimaryDarkText}"/>
+        <Setter Property="TextColor" Value="{StaticResource PrimaryDarkText}"/>
     </Style>
     <!--#endregion-->
     

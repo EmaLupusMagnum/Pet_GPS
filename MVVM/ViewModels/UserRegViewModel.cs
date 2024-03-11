@@ -1,15 +1,25 @@
 ﻿using PetGPS.MVVM.Models;
+using PropertyChanged;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text.RegularExpressions;
 
 namespace PetGPS.MVVM.ViewModels
 {
+    [AddINotifyPropertyChangedInterface]
     public class UserRegViewModel
     {
         public string Name { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+        public ObservableCollection<Pet> Pets { get; set; } = new ObservableCollection<Pet>();
         private User user { get; set; } = new User();
+
+        public UserRegViewModel()
+        {
+            Pets = new ObservableCollection<Pet>(App.PetRepo.GetItems());
+        }
 
         public string AllChecked(string name, string pass, string email, string phone)
         {
@@ -100,6 +110,15 @@ namespace PetGPS.MVVM.ViewModels
             user.Phone = Phone;
 
             App.UserRepo.SaveItem(user);
+
+            foreach (var pet in Pets)
+            {
+                pet.OwnerId = user.Id;
+                App.PetRepo.SaveItem(pet);
+            }
+
+            Debug.WriteLine("==========" + App.UserRepo.StatusMessage);
         }
+
     }
 }

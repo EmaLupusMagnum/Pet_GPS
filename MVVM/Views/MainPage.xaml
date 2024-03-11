@@ -8,12 +8,15 @@
     
     <Grid RowDefinitions=".1*,.8*">
         <maps:Map Grid.RowSpan="2"
-                  IsShowingUser="True" />
+                  IsShowingUser="True" 
+                  x:Name="Map"/>
         
         <Button Style="{StaticResource CircularButton}"
                 HorizontalOptions="Start"
                 Text="+"
-                FontAttributes="Bold" />
+                FontAttributes="Bold" 
+                x:Name="BtnAddPin"
+                Clicked="BtnAddPin_Clicked"/>
     </Grid>
     
 </ContentPage>

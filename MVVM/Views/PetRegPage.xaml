@@ -9,21 +9,27 @@
         <Frame Grid.Row="1">
             <Entry Placeholder="Nombre"
                    Keyboard="Text"
-                   MaxLength="20" />
+                   MaxLength="15" 
+                   x:Name="EntryName"/>
         </Frame>
         
         <Frame Grid.Row="2">
             <Entry Placeholder="Raza"
-                   Keyboard="Text"/>
+                   Keyboard="Text"
+                   MaxLength="20"
+                   x:Name="EntryRace"/>
         </Frame>
         
         <Frame Grid.Row="3">
-            <Entry Placeholder="Colores"
-                   Keyboard="Email" />
+            <Entry Placeholder="Colores(negro,gris)"
+                   Keyboard="Text"
+                   x:Name="EntryColors"/>
         </Frame>
         
         <Frame Grid.Row="4">
-            <Picker Title="Sexo" />
+            <Picker Title="Sexo" 
+                    ItemsSource="{Binding PetSex}"
+                    x:Name="PckSex"/>
         </Frame>
         <Label Grid.Row="5" 
                Text="DESCRIPCIÓN"
@@ -34,12 +40,14 @@
         <Frame Grid.Row="6"
                VerticalOptions="Fill">
             <Editor Keyboard="Chat"
-                    MaxLength="150
-                    "/>
+                    MaxLength="150"
+                    x:Name="EdtDescription"/>
         </Frame>
         
         <Button Grid.Row="7"
                 Text="Registrar Mascota"
-                VerticalOptions="Center" />
+                VerticalOptions="Center" 
+                x:Name="BtnRegisterPet"
+                Clicked="BtnRegisterPet_Clicked"/>
     </Grid>
 </ContentPage>

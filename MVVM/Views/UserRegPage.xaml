@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:utilities="clr-namespace:PetGPS.Utilities"
              x:Class="PetGPS.MVVM.Views.UserRegPage">
-    <Grid RowDefinitions=".12*,.12*,.12*,.12*,.12*,.06*,.05*,.28*"
+    
+    <Grid RowDefinitions=".12*,.12*,.12*,.12*,.12*,.06*,.09*,.25*"
           Padding="5">
         <Image Source="usericon.svg" />
         
@@ -37,16 +39,36 @@
                 x:Name="BtnRegister"
                 Clicked="BtnRegister_Clicked"/>
         
-        <Label Grid.Row="6"
-               Text="Mascotas"
-               Style="{StaticResource Title}"
-               FontSize="Large" />
+        <Grid  Grid.Row="6"
+               ColumnDefinitions=".8*,.2*"
+               VerticalOptions="Center"
+               WidthRequest="200">
+            <Label Text="Mascotas"
+                   Style="{StaticResource Title}"
+                   FontSize="Large"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"/>
+            <Image Grid.Column="1"
+                   VerticalOptions="Center"
+                   HorizontalOptions="End">
+                <Image.Source>
+                    <FontImageSource Glyph="{x:Static utilities:IconFont.Refresh_Icon}"
+                                     Size="30"
+                                     FontFamily="Icons" 
+                                     Color="Black"/>
+                </Image.Source>
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="RefreshList_Tapped" />
+                </Image.GestureRecognizers>
+            </Image>
+        </Grid>
         
         <Frame Grid.Row="7"
                VerticalOptions="Fill"
                CornerRadius="10">
             
-            <CollectionView ItemsSource="{Binding List}">
+            <CollectionView ItemsSource="{Binding Pets}"
+                            x:Name="CollectionView">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical"
                                        ItemSpacing="5" />
@@ -77,7 +99,7 @@
                                    VerticalOptions="Center"
                                    HorizontalOptions="Center"
                                    FontFamily="Lato"
-                                   FontSize="Title" />
+                                   FontSize="Medium" />
                             <Button Grid.Column="1"
                                     Text="+"
                                     Style="{StaticResource CircularButton}"
