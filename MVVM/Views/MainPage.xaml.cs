@@ -12,14 +12,6 @@ public partial class MainPage : ContentPage
 		InitializeComponent();
 	}
 
-	public async void getus()
-	{
-		var user = App.UserRepo.GetItems().First();
-		await DisplayAlert("ok",$" {user.Id} {user.Name} {user.Email} {user.Phone} {user.Password}","ok");
-
-		Debug.WriteLine(user.Name);
-	}
-
     private async void BtnAddPin_Clicked(object sender, EventArgs e)
     {
         string ubicacion = await DisplayPromptAsync("Entra una ubicacion","Pon una ubicacion entre mas precisa mejor", "Listo", "Cancelar");

@@ -17,7 +17,7 @@ namespace PetGPS
 
             RegisterRoutes();
 
-            MainPage = new AppShell();
+            MainPage = new VisualizePage();
 
         }
 

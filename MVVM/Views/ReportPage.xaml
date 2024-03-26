@@ -10,12 +10,11 @@
         <Frame>
             <Label Text="AGREGAR REPORTE"
                    Style="{StaticResource Title}"
-                   TextColor="{StaticResource Secondary}"
                    FontSize="35"
                    VerticalOptions="Center" />
         </Frame>
         
-        <Label Text="Mascotas"
+        <Label Text="Selecciona la Mascota"
                Grid.Row="1"
                Style="{StaticResource Title}"
                FontSize="Large"
@@ -71,14 +70,17 @@
         </Frame>
         
         <Frame Grid.Row="3">
-            <Entry Placeholder="Ultima Ubicación Conocida"
+            <Entry Placeholder="Ultima Ubicación Conocida (Ejm: Medellín Cra. 84b...)"
                    Keyboard="Text"/>
         </Frame>
         
         <Frame Grid.Row="4"
                VerticalOptions="Fill">
             <Editor Keyboard="Chat"
-                    MaxLength="150"/>
+                    MaxLength="150"
+                    FontFamily="Lato"
+                    Placeholder="Descripcion detallada de como, donde se perdio la mascota y como luce esta. Entre mas información mas util sera."
+                    PlaceholderColor="Black"/>
         </Frame>
         
         <Button Grid.Row="5"

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PetGPS.MVVM.Views.VisualizePage"
+             Title="VisualizePage">
+    <Grid RowDefinitions=".15*,.4*,.2*,.05*,.2*"
+          Padding="10">
+        
+        <Image Source="usericon"/>
+        
+        <Frame Grid.Row="1"
+               VerticalOptions="Fill">
+            <Grid RowDefinitions=".25*,.25*,.25*,.25*">
+                <Label Text="Nombre"
+                       Style="{StaticResource Title}"
+                       FontSize="Large" />
+                <Label Grid.Row="1"
+                       Text="Correo"
+                       Style="{StaticResource Title}"
+                       FontSize="Large" />
+                <Label Grid.Row="2"
+                       Text="Telefono"
+                       Style="{StaticResource Title}"
+                       FontSize="Large" />
+                <Label Grid.Row="3"
+                       Text="Tipo de servicio"
+                       Style="{StaticResource Title}"
+                       FontSize="Large" />
+            </Grid>
+        </Frame>
+        
+        
+        
+        <Frame Grid.Row="2"
+               VerticalOptions="Fill"
+               Margin="5">
+            <Grid RowDefinitions=".2*,.8*">
+                <Label Text="Descripcion"
+                       Style="{StaticResource Title}"
+                       FontSize="Default"/>
+                
+                <Label Grid.Row="1"
+                       FontSize="Small"
+                       HorizontalOptions="Start"
+                       FontFamily="Lato"
+                       Text="Texto descripción"/>
+            </Grid>
+        </Frame>
+        
+        <Label Grid.Row="3"
+               Text="Mascotas"
+               Style="{StaticResource Title}"
+               FontSize="Large" />
+        
+        <Frame Grid.Row="4"
+               VerticalOptions="Fill">
+            
+            <CollectionView ItemsSource="{Binding Pets}">
+                
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                       ItemSpacing="5" />
+                </CollectionView.ItemsLayout>
+                
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Style="{StaticResource CollectionFrames}">
+                            <Grid ColumnDefinitions=".2*,.8*">
+                                <Image Source="perro.jpg"
+                                       VerticalOptions="Fill"
+                                       WidthRequest="100"
+                                       HeightRequest="100"
+                                       Clip="{StaticResource circle}" />
+                                <Label Grid.Column="1"
+                                       VerticalOptions="Center"
+                                       Style="{StaticResource Title}"
+                                       FontSize="Large"
+                                       Text="{Binding Name}" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                
+            </CollectionView>
+        </Frame>
+    </Grid>
+</ContentPage>
