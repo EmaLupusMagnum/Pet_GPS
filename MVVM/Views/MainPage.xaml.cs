@@ -1,55 +1,67 @@
 using Microsoft.Maui.ApplicationModel;
 using Microsoft.Maui.Controls.Maps;
+using Microsoft.Maui.Devices.Sensors;
 using Microsoft.Maui.Maps;
-using System.Diagnostics;
+using PetGPS.MVVM.Models;
+using PetGPS.MVVM.ViewModels;
 
 namespace PetGPS.MVVM.Views;
 
 public partial class MainPage : ContentPage
 {
+    MainViewModel vm;
 	public MainPage()
 	{
 		InitializeComponent();
+        vm = new MainViewModel();
 	}
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        var geolocationrequest = new GeolocationRequest(GeolocationAccuracy.High, TimeSpan.FromSeconds(2));
+        var location = await Geolocation.GetLocationAsync(geolocationrequest);
+
+        Map.MoveToRegion(MapSpan.FromCenterAndRadius(location,Distance.FromKilometers(10)));
+        vm.UpdateReports();
+        AddPins();
+    }
 
     private async void BtnAddPin_Clicked(object sender, EventArgs e)
     {
-        string ubicacion = await DisplayPromptAsync("Entra una ubicacion","Pon una ubicacion entre mas precisa mejor", "Listo", "Cancelar");
+        await Shell.Current.GoToAsync("//ReportPage");
+    }
 
-        if (!string.IsNullOrWhiteSpace(ubicacion))
+    private async void AddPins()
+    {
+        List<Report> reports = vm.Reports;
+
+        foreach (var r in reports)
         {
-            try
+            var locations = await Geocoding.GetLocationsAsync(r.Location);
+            var loc = locations.FirstOrDefault();
+
+            Pin pin = new Pin()
             {
-                var location = await Geocoding.GetLocationsAsync(ubicacion);
-                var firstLocation = location?.FirstOrDefault();
+                Address = vm.GetPetDesc(r.PetId),
+                Location = loc,
+                Label = vm.GetPetName(r.PetId),
+                Type = PinType.SavedPin,
+                MarkerId = r.PetId
+            };
 
-                if (firstLocation != null)
-                {
-                    var pin = new Pin
-                    {
-                        Label = "Ubicación",
-                        Location = new Location(firstLocation.Latitude, firstLocation.Longitude),
-                        Type = PinType.SavedPin
-                    };
-
-                    Map.Pins.Clear();
-                    Map.Pins.Add(pin);
-                    Map.MoveToRegion(MapSpan.FromCenterAndRadius(new Location(firstLocation.Latitude, firstLocation.Longitude), Distance.FromKilometers(1)));
-
-                }
-                else
-                {
-                    await DisplayAlert("Error", "No se pudo encontrar la ubicación", "OK");
-                }
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("Error", $"Ocurrió un error: {ex.Message}", "OK");
-            }
+            pin.InfoWindowClicked += PinMarked;
+            Map.Pins.Add(pin);
         }
-        else
-        {
-            await DisplayAlert("Error", "Por favor ingrese una ubicación", "OK");
-        }
+
+    }
+
+    private async void PinMarked(object sender, PinClickedEventArgs e)
+    {
+        var pinInfo = (Pin)sender;
+        int petId = 1;
+
+        await Shell.Current.GoToAsync($"VisualizePet?id={petId}");
     }
 }

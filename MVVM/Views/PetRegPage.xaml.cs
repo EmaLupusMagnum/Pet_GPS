@@ -1,4 +1,5 @@
 using PetGPS.MVVM.ViewModels;
+using System.Diagnostics;
 
 namespace PetGPS.MVVM.Views;
 
@@ -17,7 +18,8 @@ public partial class PetRegPage : ContentPage
 		string message = vm.CheckPet(EntryName.Text, EntryRace.Text, EntryColors.Text,EdtDescription.Text, sex);
 		bool sure = false;
 
-		if (message == "Valid")
+
+        if (message == "Valid")
 		{
            sure = await DisplayAlert("Todo bien", $"Revise los datos antes de guardar:\nNombre: {vm.PetName}"+
 			   $"\nRaza: {vm.PetRace}\nColores: {vm.PetColors}\nSexo: {vm.PetSexSelected}" , "Guardar","Cancelar");
@@ -28,7 +30,7 @@ public partial class PetRegPage : ContentPage
 		if (sure) 
 		{
 			vm.SavePet();
-			await Shell.Current.GoToAsync($"..");
+			await Shell.Current.GoToAsync("..");
         }
     }
 }

@@ -95,13 +95,14 @@
         </DataTemplate>
     </Shell.ItemTemplate>
     
+    <ShellContent ContentTemplate="{DataTemplate local:LoadingPage}"
+                  Route="LoadingPage"
+                  Shell.FlyoutItemIsVisible="False"
+                  Shell.FlyoutBehavior="Disabled" />
     
-        <ShellContent ContentTemplate="{DataTemplate local:LoadingPage}"
-                      Route="LoadingPage" 
-                      Shell.FlyoutItemIsVisible="False"
-                      Shell.FlyoutBehavior="Disabled"/>
     
-        <FlyoutItem Title="Mapa">
+    
+    <FlyoutItem Title="Mapa">
         <ShellContent ContentTemplate="{DataTemplate local:MainPage}"
                       Route="MainPage" />
         <FlyoutItem.Icon>
@@ -121,6 +122,12 @@
         </FlyoutItem.Icon>
     </FlyoutItem>
     
+    <ShellContent ContentTemplate="{DataTemplate local:PetRegPage}"
+                  Route="PetRegPage"
+                  Shell.FlyoutItemIsVisible="False"
+                  Shell.FlyoutBehavior="Disabled" />
     
-    
+    <ShellContent ContentTemplate="{DataTemplate local:ReportPage}"
+                  Route="ReportPage"
+                  Shell.FlyoutItemIsVisible="False"/>
 </Shell>

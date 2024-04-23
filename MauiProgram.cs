@@ -27,6 +27,8 @@ namespace PetGPS
 #endif
             builder.Services.AddSingleton<BaseRepository<User>>();
             builder.Services.AddSingleton<BaseRepository<Pet>>();
+            builder.Services.AddSingleton<BaseRepository<Provider>>();
+            builder.Services.AddSingleton<BaseRepository<Report>>();
 
             builder.Services.AddTransient<AuthService>();
             builder.Services.AddTransient<LoadingPage>();

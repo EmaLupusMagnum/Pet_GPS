@@ -13,10 +13,15 @@ namespace PetGPS.MVVM.ViewModels
         public string Password { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public ObservableCollection<Pet> Pets { get; set; } = new ObservableCollection<Pet>();
+        public ObservableCollection<Pet> Pets { get; set; }
         private User user { get; set; } = new User();
 
         public UserRegViewModel()
+        {
+            UpdateData();
+        }
+
+        public void UpdateData()
         {
             Pets = new ObservableCollection<Pet>(App.PetRepo.GetItems());
         }

@@ -11,6 +11,12 @@ public partial class UserRegPage : ContentPage
 		BindingContext = vm;
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        vm.UpdateData();
+    }
 
     private async void BtnAddPet_Clicked(object sender, EventArgs e)
     {
@@ -35,11 +41,5 @@ public partial class UserRegPage : ContentPage
             vm.SaveData();
             await Shell.Current.GoToAsync("//MainPage");    
         }
-    }
-
-    private void RefreshList_Tapped(object sender, TappedEventArgs e)
-    {
-        vm.Pets = new System.Collections.ObjectModel.ObservableCollection<Models.Pet>(App.PetRepo.GetItems());
-
     }
 }

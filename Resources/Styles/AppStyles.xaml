@@ -63,12 +63,32 @@
         <Setter Property="BackgroundColor" Value="{StaticResource Tertiary}"/>
     </Style>
     
-    <Style TargetType="Frame" x:Key="CollectionFrames">
+    <Style TargetType="Frame"
+           x:Key="FrameVisualState">
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Selected">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor"
+                                    Value="{StaticResource Primary}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+    
+    <Style TargetType="Frame" x:Key="CollectionFrames" BasedOn="{StaticResource FrameVisualState}">
         <Setter Property="CornerRadius" Value="50"/>
         <Setter Property="VerticalOptions" Value="Center"/>
         <Setter Property="BackgroundColor" Value="{StaticResource Secondary}" />
         <Setter Property="HeightRequest" Value="90" />
+        <Setter Property="Margin" Value="10" />
     </Style>
+    
+    
     <!--#endregion-->
     
     <!--#region Entry -->
@@ -86,5 +106,17 @@
         <Setter  Property="TextColor" Value="Black"/>
         <Setter  Property="FontAttributes" Value="Bold"/>
     </Style>
+    <!--#endregion-->
+    
+    <!--#region CollectionViews -->
+    <Style TargetType="CollectionView">
+        <Setter Property="SelectionMode" Value="Single"/>
+        <Setter Property="ItemsLayout">
+            <LinearItemsLayout Orientation="Vertical"
+                               ItemSpacing="7" />
+        </Setter>
+    </Style>
+    
+   
     <!--#endregion-->
 </ResourceDictionary>

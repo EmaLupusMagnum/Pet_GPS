@@ -2,32 +2,36 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PetGPS.MVVM.Views.ReportPage"
+             xmlns:local="clr-namespace:PetGPS.MVVM.ViewModels"
+             xmlns:utilities="clr-namespace:PetGPS.Utilities"
              Title="ReportPage">
     
-    <Grid RowDefinitions=".15*,.1*,.25*,.2*,.2*,.1*"
-          Padding="10">
+    <Grid RowDefinitions=".07*,.05*,.05*,.33*,.2*,.2*,.1*"
+          Padding="5">
         
-        <Frame>
-            <Label Text="AGREGAR REPORTE"
-                   Style="{StaticResource Title}"
-                   FontSize="35"
-                   VerticalOptions="Center" />
-        </Frame>
+        <Label Text="AGREGAR REPORTE"
+               FontSize="35"
+               FontAttributes="Bold"
+               FontFamily="Lato"
+               VerticalOptions="End"
+               HorizontalOptions="Center"/>
         
-        <Label Text="Selecciona la Mascota"
-               Grid.Row="1"
+        <BoxView Grid.Row="1"
+                 BackgroundColor="{StaticResource Tertiary}"
+                 VerticalOptions="Start"
+                 HeightRequest="10"/>
+        
+        <Label Text="Selecciona una mascota"
+               Grid.Row="2"
                Style="{StaticResource Title}"
-               FontSize="Large"
-               VerticalOptions="Center"/>
+               FontSize="Body"
+               VerticalOptions="Center"
+               HorizontalOptions="Center" />
         
-        <Frame Grid.Row="2"
+        <Frame Grid.Row="3"
                VerticalOptions="Fill">
-            
-            <CollectionView ItemsSource="{Binding List}">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical"
-                                       ItemSpacing="5" />
-                </CollectionView.ItemsLayout>
+            <CollectionView ItemsSource="{Binding Pets}"
+                            x:Name="PetsCollection">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame Style="{StaticResource CollectionFrames}">
@@ -58,34 +62,39 @@
                                    FontSize="Medium" />
                             <Button Grid.Column="1"
                                     Text="+"
+                                    x:Name="BtnAddPet"
                                     Style="{StaticResource CircularButton}"
                                     VerticalOptions="Center"
-                                    HorizontalOptions="Center" />
+                                    HorizontalOptions="Center"
+                                    Clicked="BtnAddPet_Clicked" />
                         </Grid>
                     </Frame>
                 </CollectionView.Footer>
-                
             </CollectionView>
             
         </Frame>
         
-        <Frame Grid.Row="3">
+        <Frame Grid.Row="4">
             <Entry Placeholder="Ultima Ubicación Conocida (Ejm: Medellín Cra. 84b...)"
-                   Keyboard="Text"/>
+                   Keyboard="Text"
+                   x:Name="EntryLocation"/>
         </Frame>
         
-        <Frame Grid.Row="4"
+        <Frame Grid.Row="5"
                VerticalOptions="Fill">
             <Editor Keyboard="Chat"
                     MaxLength="150"
                     FontFamily="Lato"
                     Placeholder="Descripcion detallada de como, donde se perdio la mascota y como luce esta. Entre mas información mas util sera."
-                    PlaceholderColor="Black"/>
+                    PlaceholderColor="Black"
+                    x:Name="DescriptionEditor"/>
         </Frame>
         
-        <Button Grid.Row="5"
+        <Button Grid.Row="6"
                 Margin="10"
-                Text="Reportar"/>
+                Text="Reportar"
+                x:Name="BtnReport"
+                Clicked="BtnReport_Clicked"/>
     </Grid>
     
 </ContentPage>

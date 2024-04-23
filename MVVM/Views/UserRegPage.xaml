@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:utilities="clr-namespace:PetGPS.Utilities"
+             xmlns:local="clr-namespace:PetGPS.MVVM.ViewModels"
              x:Class="PetGPS.MVVM.Views.UserRegPage">
     
     <Grid RowDefinitions=".12*,.12*,.12*,.12*,.12*,.06*,.09*,.25*"
@@ -30,7 +31,7 @@
         
         <Frame Grid.Row="4">
             <Entry Placeholder="Telefono"
-                   Keyboard="Numeric"
+                   Keyboard="Telephone"
                    x:Name="EntryPhone"/>
         </Frame>
         
@@ -39,40 +40,19 @@
                 x:Name="BtnRegister"
                 Clicked="BtnRegister_Clicked"/>
         
-        <Grid  Grid.Row="6"
-               ColumnDefinitions=".8*,.2*"
+        <Label Text="Mascotas"
+               Grid.Row="6"
+               Style="{StaticResource Title}"
+               FontSize="Large"
                VerticalOptions="Center"
-               WidthRequest="200">
-            <Label Text="Mascotas"
-                   Style="{StaticResource Title}"
-                   FontSize="Large"
-                   VerticalOptions="Center"
-                   HorizontalOptions="Center"/>
-            <Image Grid.Column="1"
-                   VerticalOptions="Center"
-                   HorizontalOptions="End">
-                <Image.Source>
-                    <FontImageSource Glyph="{x:Static utilities:IconFont.Refresh_Icon}"
-                                     Size="30"
-                                     FontFamily="Icons" 
-                                     Color="Black"/>
-                </Image.Source>
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="RefreshList_Tapped" />
-                </Image.GestureRecognizers>
-            </Image>
-        </Grid>
+               HorizontalOptions="Center" />
         
         <Frame Grid.Row="7"
                VerticalOptions="Fill"
                CornerRadius="10">
-            
             <CollectionView ItemsSource="{Binding Pets}"
                             x:Name="CollectionView">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical"
-                                       ItemSpacing="5" />
-                </CollectionView.ItemsLayout>
+                
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame Style="{StaticResource CollectionFrames}">
@@ -91,6 +71,7 @@
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+                
                 <CollectionView.Footer>
                     <Frame Grid.Row="1"
                            Style="{StaticResource CollectionFrames}">
@@ -110,6 +91,7 @@
                         </Grid>
                     </Frame>
                 </CollectionView.Footer>
+                
             </CollectionView>
         </Frame>
     </Grid>

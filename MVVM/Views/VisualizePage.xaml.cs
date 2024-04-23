@@ -1,9 +1,10 @@
-namespace PetGPS.MVVM.Views;
-
-public partial class VisualizePage : ContentPage
+namespace PetGPS.MVVM.Views
 {
-	public VisualizePage()
-	{
-		InitializeComponent();
-	}
+    public partial class VisualizePage : ContentPage
+    { public VisualizePage()
+        {
+            InitializeComponent();
+            
+        }
+    }
 }

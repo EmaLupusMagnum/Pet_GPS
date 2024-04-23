@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Xml.Linq;
 
 namespace PetGPS.MVVM.ViewModels
@@ -125,5 +126,11 @@ namespace PetGPS.MVVM.ViewModels
             App.PetRepo.SaveItem(pet);
             Debug.WriteLine("========" + App.PetRepo.StatusMessage);
         }
+
+        public ICommand BackCommand =>
+            new Command(() =>
+            {
+                Shell.Current.GoToAsync("..");
+            });
     }
 }

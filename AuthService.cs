@@ -12,7 +12,7 @@ namespace PetGPS
         {
             var users = App.UserRepo.GetItems();
 
-            await Task.Delay(2000);
+            await Task.Delay(1200);
 
             if(users.Count() > 0)
                 return true;

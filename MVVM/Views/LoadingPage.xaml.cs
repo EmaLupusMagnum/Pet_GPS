@@ -17,6 +17,6 @@ public partial class LoadingPage : ContentPage
         if (await _authService.IsAuthenticatedAsync())
             await Shell.Current.GoToAsync("//MainPage");
         else
-            await Shell.Current.GoToAsync("/LoginPage");
+            await Shell.Current.GoToAsync("LoginPage");
     }
 }

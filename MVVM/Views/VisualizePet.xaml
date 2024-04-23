@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PetGPS.MVVM.Views.VisualizePet"
+             Title="VisualizePet">
+    
+    <ScrollView Margin="10">
+        
+        <VerticalStackLayout Spacing="5">
+            <Grid ColumnDefinitions=".4*,.6*">
+                <Image Source="usericon.jpg"
+                       VerticalOptions="Fill"
+                       WidthRequest="100"
+                       HeightRequest="100" />
+                <Label Grid.Column="1" 
+                       Text="{Binding OwnerName}"
+                       Style="{StaticResource Title}"
+                       FontSize="Large"
+                       VerticalOptions="Center"/>
+            </Grid>
+            
+            <BoxView BackgroundColor="{StaticResource Tertiary}"
+                     VerticalOptions="Start"
+                     HeightRequest="10"/>
+            
+            <Grid ColumnDefinitions=".4*,.6*">
+                <Image Source="perro.jpg"
+                       VerticalOptions="Fill"
+                       WidthRequest="100"
+                       HeightRequest="100"
+                       Clip="{StaticResource circle}" />
+                <Label Grid.Column="1"
+                       Text="{Binding PetName}"
+                       Style="{StaticResource Title}"
+                       FontSize="Large"
+                       VerticalOptions="Center" />
+            </Grid>
+                
+            <Frame Style="{StaticResource FrameVisualState}">
+                <Grid RowDefinitions="*,*,*"
+                      HorizontalOptions="Center"
+                      RowSpacing="10">
+                    
+                    <Label Text="{Binding PetRace}"
+                           Style="{StaticResource Title}"
+                           FontSize="Large" />
+                    
+                    <Label Text="{Binding PetColors}"
+                           Grid.Row="1"
+                           Style="{StaticResource Title}"
+                           FontSize="Large" />
+                    
+                    <Label Text="{Binding PetSex}"
+                           Grid.Row="2"
+                           Style="{StaticResource Title}"
+                           FontSize="Large" />
+                </Grid>
+            </Frame>
+            
+            <Label Text="Descripcion"
+                   Style="{StaticResource Title}"
+                   FontSize="Large"
+                   Margin="0,10,0,0"/>
+            
+            <Frame Style="{StaticResource FrameVisualState}">
+                <Label Text="{Binding PetDesc}"
+                       FontFamily="Lato"
+                       FontSize="Body"/>
+            </Frame>
+            
+            <Grid RowDefinitions="*,*,*,*"
+                  RowSpacing="10"
+                  IsVisible="{Binding IsLost}">
+                
+                <Label Text="¡REPORTADO COMO PERDIDO!"
+                       Style="{StaticResource Title}"
+                       FontSize="Large"
+                       Margin="0,10,0,0"
+                       TextColor="Red" />
+                
+                <Label Text="{Binding PetLastLocation, StringFormat='Ultima vez visto en: {0}'}"
+                       Style="{StaticResource Title}"
+                       FontSize="Medium"
+                       Grid.Row="1" />
+                
+                <Label Text="Descripcion del reporte"
+                       Style="{StaticResource Title}"
+                       FontSize="Medium"
+                       Grid.Row="2" />
+                
+                <Frame Style="{StaticResource FrameVisualState}"
+                       Grid.Row="3">
+                    
+                    <Label Text="{Binding ReportDesc}"
+                           FontFamily="Lato"
+                           FontSize="Body" />
+                </Frame>
+            </Grid>
+            
+        </VerticalStackLayout>
+        
+    </ScrollView>
+    
+</ContentPage>
