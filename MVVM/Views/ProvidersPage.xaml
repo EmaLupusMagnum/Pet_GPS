@@ -7,7 +7,7 @@
     <Grid RowDefinitions=".2*,.8*"
           Padding="10">
         
-        <Grid RowDefinitions=".6*,.4*" >
+        <Grid RowDefinitions=".5*,.5*" >
             <Frame>
                 <SearchBar Placeholder="Search"
                            PlaceholderColor="{StaticResource PrimaryDarkText}"
@@ -24,20 +24,66 @@
                        FontSize="Body"
                        VerticalOptions="Center"/>
                 
-                <CollectionView Grid.Column="1">
+                <CollectionView Grid.Column="1"
+                                ItemsSource="{Binding Filtros}"
+                                HeightRequest="55"
+                                SelectionMode="Multiple" >
+                    
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"
+                                           ItemSpacing="5" />
+                    </CollectionView.ItemsLayout>
+                    
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Style="{StaticResource CollectionFrames}"
+                                   BackgroundColor="{StaticResource Secondary}"
+                                   HeightRequest="54">
+                                <Label Text="{Binding}" 
+                                       Style="{StaticResource Title}"
+                                       FontSize="Caption"
+                                       VerticalOptions="Center"/>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
                     
                 </CollectionView>
                 
             </Grid>
         </Grid>
         
-        <CollectionView Grid.Row="1">
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Prooviders}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                                   ItemSpacing="5" />
+            </CollectionView.ItemsLayout>
             
-            <CollectionView.EmptyViewTemplate>
+            <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Label Text="No se encontro ningun proveedor"/>
+                    <Frame Style="{StaticResource CollectionFrames}"
+                           BackgroundColor="{StaticResource Tertiary}">
+                        <Grid ColumnDefinitions=".2*,.8*"
+                              RowDefinitions=".6*,.4*">
+                            <Image Grid.RowSpan="2"
+                                   Source="usericon.png"/>
+                            
+                            <Label Style="{StaticResource Title}" 
+                                   FontSize="Header"
+                                   Text="{Binding Name}"
+                                   Grid.Column="1"
+                                   VerticalOptions="Center"/>
+                            
+                            <Label Grid.Row="1"
+                                   Grid.Column="1"
+                                   Style="{StaticResource Title}"
+                                   FontSize="Caption"
+                                   Text="{Binding ServiceType}"
+                                   VerticalOptions="Center"/>
+                        </Grid>
+                    </Frame>
                 </DataTemplate>
-            </CollectionView.EmptyViewTemplate>
+            </CollectionView.ItemTemplate>
             
         </CollectionView>
         

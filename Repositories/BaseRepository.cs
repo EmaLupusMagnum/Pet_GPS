@@ -1,6 +1,7 @@
 ﻿using PetGPS.Abstractions;
 using SQLite;
 using SQLiteNetExtensions.Extensions;
+using System;
 using System.Linq.Expressions;
 
 namespace PetGPS.Repositories
@@ -141,5 +142,5 @@ namespace PetGPS.Repositories
                }
                return null;
           }
-     }
+    }
 }

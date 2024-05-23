@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PetGPS.MVVM.Views.ProovRegPage"
              Title="ProovRegPage">
-    <Grid RowDefinitions=".12*,.12*,.12*,.12*,.12*,.12*,.06*,.05*,.18*"
+    <Grid RowDefinitions=".1*,.1*,.12*,.12*,.12*,.16*,.06*,.05*,.18*"
           Padding="5">
         
         <Image Source="usericon.svg" />
@@ -11,31 +11,68 @@
         <Frame Grid.Row="1">
             <Entry Placeholder="Nombre y Apellido"
                    Keyboard="Text"
-                   MaxLength="20" />
+                   MaxLength="20" 
+                   x:Name="EntryName"/>
         </Frame>
         
         <Frame Grid.Row="2">
             <Entry Placeholder="Contraseña"
                    Keyboard="Text"
-                   IsPassword="True" />
+                   IsPassword="True"
+                   x:Name="EntryPassword"/>
         </Frame>
         
         <Frame Grid.Row="3">
             <Entry Placeholder="Correo"
-                   Keyboard="Email" />
+                   Keyboard="Email" 
+                   x:Name="EntryEmail"/>
         </Frame>
         
         <Frame Grid.Row="4">
             <Entry Placeholder="Telefono"
-                   Keyboard="Numeric" />
+                   Keyboard="Telephone"
+                   x:Name="EntryPhone"/>
         </Frame>
         
-        <Frame Grid.Row="5">
-            <Picker Title="Tipo de servicio"/>
+        <Frame Grid.Row="5"
+               VerticalOptions="Fill"
+               Margin="0,5,0,5">
+            <Grid RowDefinitions=".2*,.8*">
+                <Label Text="Disponibilidad de servicios"
+                       Style="{StaticResource Title}"
+                       FontSize="Caption"
+                       VerticalOptions="Fill"/>
+                
+                <CollectionView Grid.Row="1"
+                                ItemsSource="{Binding Services}"
+                                SelectionMode="Multiple"
+                                HeightRequest="55"
+                                VerticalOptions="Center"
+                                x:Name="CollectionServices">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"
+                                           ItemSpacing="5" />
+                    </CollectionView.ItemsLayout>
+                    
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Style="{StaticResource CollectionFrames}"
+                                   HeightRequest="54">
+                                <Label Text="{Binding}"
+                                       VerticalOptions="Center"
+                                       Style="{StaticResource Title}"
+                                       FontSize="Caption" />
+                            </Frame>
+                            
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
         </Frame>
         
         <Button Grid.Row="6"
-                Text="Registrarse"/>
+                Text="Registrarse"
+                Clicked="Register_Clicked"/>
         
         <Label Grid.Row="7"
                Text="Mascotas"
@@ -46,7 +83,8 @@
                VerticalOptions="Fill"
                CornerRadius="10">
             
-            <CollectionView ItemsSource="{Binding List}">
+            <CollectionView ItemsSource="{Binding Pets}"
+                            x:Name="CollectionPets">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical"
                                        ItemSpacing="5" />
@@ -82,7 +120,8 @@
                                     Text="+"
                                     Style="{StaticResource CircularButton}"
                                     VerticalOptions="Center"
-                                    HorizontalOptions="Center" />
+                                    HorizontalOptions="Center" 
+                                    Clicked="AddPet_Clicked"/>
                         </Grid>
                     </Frame>
                 </CollectionView.Footer>

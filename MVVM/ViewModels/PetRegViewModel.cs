@@ -22,6 +22,7 @@ namespace PetGPS.MVVM.ViewModels
         public string PetColors { get; set;}
         public string PetSexSelected { get; set;}
         public string PetDescription { get; set;}
+
         public string CheckPet(string name, string race, string colors, string description, string sex)
         {
             if (!CheckPetName(name))
@@ -122,6 +123,9 @@ namespace PetGPS.MVVM.ViewModels
             pet.Colors = PetColors;
             pet.Sex = PetSexSelected;
             pet.Race = PetRace;
+
+            var ownerid = App.UserRepo.GetItems().FirstOrDefault().Id;
+            pet.OwnerId = ownerid != null ? ownerid : 1;
 
             App.PetRepo.SaveItem(pet);
             Debug.WriteLine("========" + App.PetRepo.StatusMessage);

@@ -48,7 +48,6 @@ public partial class MainPage : ContentPage
                 Location = loc,
                 Label = vm.GetPetName(r.PetId),
                 Type = PinType.SavedPin,
-                MarkerId = r.PetId
             };
 
             pin.InfoWindowClicked += PinMarked;
@@ -60,8 +59,9 @@ public partial class MainPage : ContentPage
     private async void PinMarked(object sender, PinClickedEventArgs e)
     {
         var pinInfo = (Pin)sender;
-        int petId = 1;
+        string desc = pinInfo.Address;
+        string name = pinInfo.Label;
 
-        await Shell.Current.GoToAsync($"VisualizePet?id={petId}");
+        await Shell.Current.GoToAsync($"VisualizePet?name={name}&desc={desc}");
     }
 }

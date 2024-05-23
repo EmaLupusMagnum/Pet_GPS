@@ -2,6 +2,7 @@
 using PropertyChanged;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,31 +24,50 @@ namespace PetGPS.MVVM.ViewModels
         public string ReportDesc { get; set; }
 
 
-        public VisualizePetViewModel(int petid)
+        public VisualizePetViewModel(string name, string desc)
         {
-            PetId = petid;
-            fillInfo(petid);
+            PetName = name;
+            PetDesc = desc;
+
+            PetId = searchId(name,desc);
+
+            fillInfo();
         }
 
-        public void fillInfo(int id)
+        private int searchId(string name, string desc)
         {
-            Pet pet = App.PetRepo.GetItem(id);
+            try
+            {
+                PetId =
+                App.PetRepo.GetItems().Where(d => d.Description == desc)
+                .FirstOrDefault(n => n.Name == name).Id;
+            }
+            catch(Exception e)
+            {
+                Debug.WriteLine(e);
+                return -1;
+            }
+
+            return PetId;
+        }
+
+        public void fillInfo()
+        {
+            Pet pet = App.PetRepo.GetItem(PetId);
             
-            PetName = pet.Name;
             PetRace = pet.Race;
             PetColors = pet.Colors;
             PetSex = pet.Sex;
-            PetDesc = pet.Description;
 
             OwnerName = getOwnerName(pet);
 
-            fillReportInfo(id);
+            fillReportInfo();
         }
 
-        private void fillReportInfo(int petid)
+        private void fillReportInfo()
         {
             var reports = App.ReportRepo.GetItems();
-            Report report = reports.Where(x => x.PetId == petid).FirstOrDefault();
+            Report report = reports.Where(x => x.PetId == PetId).FirstOrDefault();
 
             if (report != null) 
             {

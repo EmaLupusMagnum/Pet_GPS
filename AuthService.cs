@@ -11,6 +11,7 @@ namespace PetGPS
         public async Task<bool> IsAuthenticatedAsync()
         {
             var users = App.UserRepo.GetItems();
+            //var prooviders = App.ProvRepo.GetItems();
 
             await Task.Delay(1200);
 

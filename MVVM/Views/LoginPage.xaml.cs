@@ -14,7 +14,7 @@ public partial class LoginPage : ContentPage
 
     private async void BtnLogProv_Clicked(object sender, EventArgs e)
     {
-        await DisplayAlert("Lo siento", "Actualmente esta funcion no esta disponible, intentalo nuevamente en unas semanas","Ok");
+        await Shell.Current.GoToAsync("ProovRegPage");
     }
 
     private async void BtnLogUser_Clicked(object sender, EventArgs e)

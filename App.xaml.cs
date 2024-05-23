@@ -35,6 +35,7 @@ namespace PetGPS
             Routing.RegisterRoute("PetRegPage", typeof(PetRegPage));
             Routing.RegisterRoute("VisualizePage", typeof(VisualizePage));
             Routing.RegisterRoute("VisualizePet", typeof(VisualizePet));
+            Routing.RegisterRoute("ProovRegPage", typeof(ProovRegPage));
         }
 
     }
